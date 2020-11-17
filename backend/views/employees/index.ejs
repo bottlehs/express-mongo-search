@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Ua-Compatible" content="ie=edge">
+  <title>Index Page</title>
+</head>
+
+<body>
+  <div class="container">
+    <h3><a href="/employees/create">Create Employee</a></h3>
+    <h1>Employee List</h1>
+    <% if(employees.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee Name</th>
+          <th>Position</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i < employees.length; i++ ) { %>
+        <tr>
+          <td>
+            <a href="/employees/show/<%= employees[i]._id %>">
+              <%= employees[i].name %>
+            </a>
+          </td>
+          <td>
+            <%= employees[i].position %>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <% } else { %>
+    <div>No Employees found</div>
+    <% } %>
+  </div>
+</body>
+
+</html>
