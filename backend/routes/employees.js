@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var employee = require('../controllers/EmployeeController.js');
-const { route } = require('./index.js');
 
 router.get('/', employee.list);
 

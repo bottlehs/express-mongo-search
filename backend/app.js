@@ -7,11 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var employeesRouter = require('./routes/employees');
+var contentsRouter = require('./routes/contents');
 
 // mongo
 var mongooese = require('mongoose');
 mongooese.Promise = global.Promise;
-mongooese.connect('mongodb://localhost:27017/local')
+mongooese.connect('mongodb://localhost:27017/ohttnet')
 .then(() => console.log('connected successful'))
 .catch((err) => console.error(err));
 
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/employees', employeesRouter);
+app.use('/contents', contentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

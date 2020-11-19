@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Ua-Compatible" content="ie=edge">
+  <title>Show List</title>
+</head>
+
+<body>
+  <div class="container">
+    <h3><a href="/contents">Content List</a></h3>
+    <h1>Content Detail</h1>
+    <table>
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>:</td>
+          <td><%= content.name %></td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>:</td>
+          <td><%= content.address %></td>
+        </tr>
+        <tr>
+          <td>Position</td>
+          <td>:</td>
+          <td><%= content.position %></td>
+        </tr>
+        <tr>
+          <td>Salary</td>
+          <td>:</td>
+          <td><%= content.salary %></td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>
+      <a href="/contents/edit/<%= content._id %>">EDIT</a>
+    </h3>
+    <form action="/contents/delete/<%= content._id %>" method="post">
+      <button type="submit">DELETE</button>
+    </form>
+  </div>
+
+</body>

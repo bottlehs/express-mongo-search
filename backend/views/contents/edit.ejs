@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Ua-Compatible" content="ie=edge">
+  <title>Edit Content</title>
+</head>
+
+<body>
+  <div class="container">
+    <h3><a href="/contents">Content List</a></h3>
+    <h1>Edit Content</h1>
+    <form action="/contents/update/<%= content._id %>" method="post">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              Name
+            </td>
+            <td>
+              <input type="text" name="name" value="<%= content.name %>" />
+            </td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td>
+              <textarea name="address">
+                <%= content.address %>
+              </textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Position</td>
+            <td>
+              <input type="text" name="position" value="<%= content.position %>" />
+            </td>
+          </tr>
+          <tr>
+            <td>Salary</td>
+            <td>
+              <input type="number" name="salary" value="<%= content.salary %>" />
+            </td>
+          </tr>
+          <tr>
+            <td><button type="submit">Update</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+
+</body>
