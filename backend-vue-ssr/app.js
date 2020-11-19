@@ -1,37 +1,27 @@
-const Vue = require('vue');
-const server = require('express')();
+// universal entry
 
-const template = require('fs').readFileSync('./index.template.html', 'utf-8');
+// app.js
+import Vue from 'vue'
+import App from './App.vue'
+import { createRouter } from './router'
+import { createStore } from './store'
+import { sync } from 'vuex-router-sync'
 
-const renderer = require('vue-server-renderer').createRenderer({
-  template,
-});
+export function createApp () {
+  // create router and store instances
+  const router = createRouter()
+  const store = createStore()
 
-const context = {
-    title: 'vue ssr',
-    metas: `
-        <meta name="keyword" content="vue,ssr">
-        <meta name="description" content="vue srr demo">
-    `,
-};
+  // sync so that route state is available as part of the store
+  sync(store, router)
 
-server.get('*', (req, res) => {
+  // create the app instance, injecting both the router and the store
   const app = new Vue({
-    data: {
-      url: req.url
-    },
-    template: `<div>The visited URL is: {{ url }}</div>`,
-  });
+    router,
+    store,
+    render: h => h(App)
+  })
 
-  renderer
-  .renderToString(app, context, (err, html) => {
-    console.log(html);
-    if (err) {
-      res.status(500).end('Internal Server Error')
-      return;
-    }
-    res.end(html);
-  });
-})
-
-server.listen(8080);
+  // expose the app, the router and the store.
+  return { app, router, store }
+}
