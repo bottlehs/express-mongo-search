@@ -1,6 +1,3 @@
-const e = require("express");
-const { request } = require("../app");
-
 var Employee = require('../models/Employee');
 var employeeController = {};
 
